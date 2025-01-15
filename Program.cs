@@ -23,6 +23,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapGet("/", () => Results.Redirect($"http://localhost:5095/swagger"));
 app.MapControllers();
 
 app.Run();
