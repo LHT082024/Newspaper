@@ -7,6 +7,9 @@ namespace Newspaper.Models
 {
     public class ArticleModel
     {
-        
+        public int Tier { get; set; }
+        public string Headline { get; set; }
+        public string Story { get; set; }
+        public int ID { get; set; }
     }
 }
