@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Newspaper.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Newspaper.Controllers
@@ -13,34 +14,30 @@ namespace Newspaper.Controllers
     [Route("api/[controller]")]
     public class ProfileController : ControllerBase
     {
-        private static List<ProfileModel> profiles = new List<ProfileModel>()
+        private readonly DbContextClass _context;
+
+        public ProfileController(DbContextClass context)
         {
-            new ProfileModel {Name = "Testing", Id = 1, Password = "lol2", ProfileType = "Editor"}
-
-        };
-
-
+            _context = context;
+        }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ProfileModel _profileModel)
+        public async Task<IActionResult> Post([FromBody] ProfileModel _profileModel)
         {
 
-            if (_profileModel == null)
-            {
-                return BadRequest("something went wrong");
-            }
 
-            _profileModel.Id = profiles.Count + 1;
-            profiles.Add(_profileModel);
-
-            return CreatedAtAction(nameof(Get), new { id = _profileModel.Id }, profiles);
+            _profileModel.Id = 0;
+            _context.profileModels.Add(_profileModel);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(Get), new { id = _profileModel.Id }, _profileModel);
         }
 
 
         [HttpGet]
-        public IEnumerable<ProfileModel> Get()
+        public async Task<IActionResult> Get()
         {
-            return profiles;
+            var profile = await _context.profileModels.ToListAsync();
+            return Ok(profile);
         }
 
     }
