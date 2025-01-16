@@ -5,13 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 namespace Newspaper.Models
 {
-    public class DbContextClass : DbContext
-    {
-        public DbContextClass(DbContextOptions<DbContextClass> options)
-          : base(options) { }
+  //this class is created so that the program can communicate via the database. 
+  public class DbContextClass : DbContext
+  {
+    //constructor for the dbcontext class(a method to create objects of a class)
+    public DbContextClass(DbContextOptions<DbContextClass> options)
+      : base(options) { }
 
-        public DbSet<ProfileModel> profileModels => Set<ProfileModel>();
-        public DbSet<ArticleModel> articleModels => Set<ArticleModel>();
 
-    }
+    //creates tables for the database based of the models
+    public DbSet<ProfileModel> profileModels => Set<ProfileModel>();
+    public DbSet<ArticleModel> articleModels => Set<ArticleModel>();
+
+  }
 }
