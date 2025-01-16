@@ -14,6 +14,8 @@ namespace Newspaper.Controllers
     [Route("api/[controller]")]
     public class ProfileController : ControllerBase
     {
+        //do be able to modify stuff inside the database we use the object created from the
+        //dbContext class
         private readonly DbContextClass _context;
 
         public ProfileController(DbContextClass context)
@@ -21,11 +23,14 @@ namespace Newspaper.Controllers
             _context = context;
         }
 
+        //this method gives us the ability to create profiles
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ProfileModel _profileModel)
         {
 
-
+            //starts with setting the id of the profile to a default zero (this can be changed)
+            //we then makes sure that the new entry we make goes to the database and follows the
+            //Profilemodel, then we save and return a newly created profile
             _profileModel.Id = 0;
             _context.profileModels.Add(_profileModel);
             await _context.SaveChangesAsync();
@@ -33,6 +38,7 @@ namespace Newspaper.Controllers
         }
 
 
+        //here we get the profiles from the db table and return it as a list.
         [HttpGet]
         public async Task<IActionResult> Get()
         {

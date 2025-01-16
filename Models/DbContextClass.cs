@@ -12,7 +12,6 @@ namespace Newspaper.Models
     public DbContextClass(DbContextOptions<DbContextClass> options)
       : base(options) { }
 
-
     //creates tables for the database based of the models
     public DbSet<ProfileModel> profileModels => Set<ProfileModel>();
     public DbSet<ArticleModel> articleModels => Set<ArticleModel>();
