@@ -8,6 +8,6 @@ namespace Newspaper.Controllers
     // i begynnelsen bare lag basic crud requests.
     public class ArticleController
     {
-
+        string oki = "lol";
     }
 }
