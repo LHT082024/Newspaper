@@ -7,6 +7,7 @@ namespace Newspaper.Models
 {
     public class ProfileModel
     {
-        
+        string lol = "lol";
+
     }
 }
