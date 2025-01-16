@@ -12,7 +12,6 @@ namespace Newspaper.Controllers
     [Route("api/[controller]")]
     public class ProfileController : ControllerBase
     {
-        ProfileModel profileModel = new ProfileModel();
         List<ProfileModel> profiles = new List<ProfileModel>()
         {
             new ProfileModel {Name = "Testing", Id = 1, Password = "lol2", ProfileType = "Editor"}
@@ -20,21 +19,31 @@ namespace Newspaper.Controllers
         };
 
         [HttpGet]
-        public IActionResult GetAllProifles()
+        public IActionResult GetAllProfiles()
         {
             return Ok(profiles);
         }
 
         [HttpPost]
-        public IActionResult CreateProfile()
+        public IActionResult CreateProfiles(ProfileModel profileModel)
         {
-            return CreatedAtAction(nameof(GetAllProifles), new
+            if (profiles.Exists(p => p.Id == profileModel.Id))
+            {
+                return Conflict($"A profile with ID {profileModel.Id} already exists.");
+            }
+
+            if (profiles == null)
+            {
+                profiles = new List<ProfileModel>();
+            }
+
+            profiles.Add(profileModel);
+            return CreatedAtAction(nameof(GetAllProfiles), new
             {
                 name = profileModel.Name,
                 id = profileModel.Id,
                 password = profileModel.Password,
-                profileModel
-            .ProfileType
+                profileModel.ProfileType
             }, profileModel);
         }
 
