@@ -62,16 +62,16 @@ namespace Newspaper.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var articleToRemove = articles.FirstOrDefault(app => app.ID == id);
-
+            var articleToRemove = await _context.articleModels.FindAsync(id);
             if (articleToRemove == null)
             {
                 return NotFound($"Article with ID {id} was not found.");
             }
 
-            articles.Remove(articleToRemove);
+            _context.articleModels.Remove(articleToRemove);
+            await _context.SaveChangesAsync();
             return Ok($"Article with ID {id} has been deleted.");
         }
     }
