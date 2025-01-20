@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Newspaper.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Newspaper.Controllers
 {
@@ -36,9 +37,10 @@ namespace Newspaper.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ArticleModel> Get()
+        public async Task<IActionResult> Get()
         {
-            return articles;
+            var article = await _context.articleModels.ToListAsync();
+            return Ok(article);
         }
 
         [HttpPut("{id}")]
