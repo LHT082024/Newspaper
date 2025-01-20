@@ -7,5 +7,33 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <!-- Login Form Code -->
+    <form action="/api/Login" method="post">
+      <label for="first">Username:</label>
+      <input
+        type="text"
+        id="first"
+        name="first"
+        placeholder="Enter your Username"
+        required
+      />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your Password"
+        required
+      />
+      <button type="submit">Submit</button>
+      <input
+        type="checkbox"
+        name="Remember"
+        id="Remember"
+        placeholder="Remember me"
+      />
+      <a href="http://">Forgot Password</a>
+    </form>
+  </body>
 </html>
