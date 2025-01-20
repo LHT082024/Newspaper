@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Newspaper.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Profile")]
     public class ProfileController : ControllerBase
     {
         //to be able to modify stuff inside the database we use the object created from the

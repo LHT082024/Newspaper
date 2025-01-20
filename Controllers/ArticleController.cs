@@ -11,7 +11,7 @@ namespace Newspaper.Controllers
 {
     // i begynnelsen bare lag basic crud requests.
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Article")]
     // i begynnelsen bare lag basic crud requests.
     //lag en artikkel også return den i get request så er det good
     public class ArticleController : ControllerBase
