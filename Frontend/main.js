@@ -11,6 +11,6 @@ async function ConnectBackend(url) {
   }
 }
 
-ConnectBackend('http://localhost:5095/api/[controller]').then((data) => {
+ConnectBackend('http://localhost:5095/api/Article').then((data) => {
   console.log('Received from backend:', data);
 });
