@@ -69,7 +69,15 @@ namespace Newspaper.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var profile = await
+            var profile = await _context.profileModels.FindAsync(id);
+            if (profile == null)
+            {
+                return NotFound();
+            }
+
+            _context.profileModels.Remove(profile);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
     }
