@@ -14,7 +14,7 @@ namespace Newspaper.Controllers
     [Route("api/[controller]")]
     public class ProfileController : ControllerBase
     {
-        //do be able to modify stuff inside the database we use the object created from the
+        //to be able to modify stuff inside the database we use the object created from the
         //dbContext class
         private readonly DbContextClass _context;
 
@@ -44,6 +44,26 @@ namespace Newspaper.Controllers
         {
             var profile = await _context.profileModels.ToListAsync();
             return Ok(profile);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] ProfileModel _Updateprofile)
+        {
+            var profile = await _context.profileModels.FindAsync(id);
+            if (profile == null)
+            {
+                return NotFound();
+            }
+
+            profile.Id = _Updateprofile.Id;
+            profile.Name = _Updateprofile.Name;
+            profile.Password = _Updateprofile.Password;
+            profile.ProfileType = _Updateprofile.ProfileType;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+
         }
 
     }
