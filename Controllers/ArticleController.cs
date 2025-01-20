@@ -15,6 +15,12 @@ namespace Newspaper.Controllers
     //lag en artikkel også return den i get request så er det good
     public class ArticleController : ControllerBase
     {
+        private readonly DbContextClass _context;
+
+        public ArticleController(DbContextClass context)
+        {
+            _context = context;
+        }
         private static List<ArticleModel> articles = new List<ArticleModel>()
         {
             new ArticleModel{
