@@ -46,6 +46,8 @@ namespace Newspaper.Controllers
             return Ok(profile);
         }
 
+        //finds profile via id and lets you update it via the profile model class
+        //and returns the updated profile to the database
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] ProfileModel _Updateprofile)
         {
@@ -62,8 +64,12 @@ namespace Newspaper.Controllers
 
             await _context.SaveChangesAsync();
             return NoContent();
+        }
 
-
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var profile = await
         }
 
     }
