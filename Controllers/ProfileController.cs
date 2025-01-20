@@ -27,6 +27,10 @@ namespace Newspaper.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ProfileModel _profileModel)
         {
+            if (_profileModel == null)
+            {
+                return BadRequest("You took a wrong turn somewhere");
+            }
 
             //starts with setting the id of the profile to a default zero (this can be changed)
             //we then makes sure that the new entry we make goes to the database and follows the
