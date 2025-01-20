@@ -44,20 +44,20 @@ namespace Newspaper.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] ArticleModel updatedArticle)
+        public async Task<IActionResult> Put(int id, [FromBody] ArticleModel _updatedArticle)
         {
-            var existingArticle = articles.FirstOrDefault(a => a.ID == id);
-
+            var existingArticle = await _context.articleModels.FindAsync(id);
             if (existingArticle == null)
             {
                 return NotFound($"The article with ID {id} was not found.");
             }
 
             //Update the article's values
-            existingArticle.Tier = updatedArticle.Tier;
-            existingArticle.Headline = updatedArticle.Headline;
-            existingArticle.Story = updatedArticle.Story;
+            existingArticle.Tier = _updatedArticle.Tier;
+            existingArticle.Headline = _updatedArticle.Headline;
+            existingArticle.Story = _updatedArticle.Story;
 
+            await _context.SaveChangesAsync();
             return Ok(existingArticle);
         }
 
