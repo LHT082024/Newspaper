@@ -1,4 +1,26 @@
-body {
+/* Styling the front page */
+.header {
+  background-color: #37c6ce;
+  padding: 8px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+}
+
+.main {
+}
+
+.footer {
+}
+
+/* Styling the login page */
+#login {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +32,7 @@ body {
   margin: 0;
 }
 
-.main {
+.login-page {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -20,11 +42,11 @@ body {
   text-align: center;
 }
 
-h1 {
+.login-page > h1 {
   color: #37c6ce;
 }
 
-h3 {
+.login-page > h3 {
   color: #2f1c19;
 }
 
@@ -48,6 +70,7 @@ input {
   border-radius: 5px;
 }
 
+/* Styling the button */
 button {
   padding: 15px;
   border-radius: 10px;
