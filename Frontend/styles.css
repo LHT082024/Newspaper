@@ -11,7 +11,6 @@
   position: sticky;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
@@ -26,18 +25,29 @@
 }
 
 .header li {
-  display: inline;
+  display: none;
 }
 
 /* Styling the links in the header */
 .header a {
-  float: left;
-  display: block;
-  color: black;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  display: block;
+}
+
+/*.header li:last-child {
+  float: right;
+}*/
+
+.header a.icon {
+  background: black;
+  display: block;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 .header a:hover {
@@ -53,6 +63,11 @@
   margin-top: 8px;
   margin-right: 16px;
   font-size: 17px;
+}
+
+.active {
+  background-color: #04aa6d;
+  color: white;
 }
 
 .main {
