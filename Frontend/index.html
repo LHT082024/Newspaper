@@ -6,7 +6,6 @@
     <title>The time traveling journalist</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="main.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <header class="header">
@@ -15,17 +14,21 @@
         >
       </h1>
       <!-- Navigation menu -->
-      <ul class="navigation">
-        <li><a href="/features">Features</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/log-in">Log in</a></li>
-      </ul>
+      <div class="off-screen-menu">
+        <ul>
+         <li><a href="/features">Features</a></li>
+          <li><a href="/about">About</a></li>
+         <li><a href="/log-in">Log in</a></li>
+       </ul>
+     </div>
       <!-- Search bar -->
       <input type="text" placeholder="Search">
       <!-- Hamburger menu -->
-       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="burger"></i>
-       </a>
+      <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
     <main class="main">
       <!-- links to different aticles -->
