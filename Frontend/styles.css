@@ -8,6 +8,7 @@
 .header {
   background-color: #37c6ce;
   overflow: hidden;
+  position: sticky;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
