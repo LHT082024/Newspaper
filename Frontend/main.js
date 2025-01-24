@@ -9,15 +9,23 @@ async function fetchArticles() {
   } catch (error) {
     console.error('Fetch Error:', error);
   }
+
+  //find the element in html where the data is to be implemented
+  const container = document.getElementById('article-container');
+
+  //removes what is already within the html container
+  container.innerHTML = '';
 }
 
 fetchArticles();
+
+//send articles to frontend
 
 //send data to backend
 async function createArticle() {
   let newArticle = {
     title: 'Pyramids are definitely gonna work this time',
-    content: '10/10 pharaohs say pyrmids were a good idea.',
+    content: '10/10 pharaohs say pyramids were a good idea.',
   };
 
   try {
