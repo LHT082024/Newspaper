@@ -6,6 +6,25 @@ async function fetchArticles() {
 
     let data = await response.json();
     console.log('Articles:', data);
+
+    //find the element in html where the data is to be implemented
+    const container = document.getElementById('article-container');
+
+    if (container) {
+      //removes what is already within the html container
+      container.innerHTML = '';
+
+      data.forEach((article) => {
+        const box = document.createElement('li');
+        box.className = 'box';
+        box.innerHTML = `
+          <p class="text"><strong>${article.headline}</strong></p>
+        `;
+        container.appendChild(box);
+      });
+    } else {
+      console.error('Container not found');
+    }
   } catch (error) {
     console.error('Fetch Error:', error);
   }
@@ -13,11 +32,13 @@ async function fetchArticles() {
 
 fetchArticles();
 
+//send articles to frontend
+
 //send data to backend
 async function createArticle() {
   let newArticle = {
     title: 'Pyramids are definitely gonna work this time',
-    content: '10/10 pharaohs say pyrmids were a good idea.',
+    content: '10/10 pharaohs say pyramids were a good idea.',
   };
 
   try {
@@ -42,3 +63,12 @@ createArticle();
 
 //login
 async function Login() {}
+
+const hamMenu = document.querySelector('.ham-menu');
+
+const offScreenMenu = document.querySelector('.off-screen-menu');
+
+hamMenu.addEventListener('click', () => {
+  hamMenu.classList.toggle('active');
+  offScreenMenu.classList.toggle('active');
+});

@@ -1,16 +1,112 @@
-/* Styling the front page */
-.header {
-  background-color: #37c6ce;
-  padding: 8px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
+/* Styling the front page */
+/* Styling the header */
+.header {
+  background-color: #37c6ce;
+  overflow: hidden;
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.header > h1 {
   color: #fff;
+  font-family: sans-serif;
+}
+
+/* Styling the off-screen-menu */
+.off-screen-menu {
+  background-color: #1e4e56;
+  height: 100vh;
+  width: 100%;
+  max-width: 450px;
+  position: fixed;
+  top: 0;
+  right: -450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 3rem;
+  transition: 0.3s ease;
+}
+
+.off-screen-menu.active {
+  right: 0;
+}
+
+.ham-menu {
+  height: 2rem;
+  width: 2rem;
+  margin-left: auto;
+  position: relative;
+}
+
+.ham-menu span {
+  height: 5px;
+  width: 100%;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s ease;
+}
+
+.ham-menu span:nth-child(1) {
+  top: 25%;
+}
+
+.ham-menu span:nth-child(3) {
+  top: 75%;
+}
+
+.ham-menu.active span:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ham-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.ham-menu.active span:nth-child(3) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.header ul {
+  list-style: none;
+  font-family: sans-serif;
+}
+
+/* Styling the links in the header */
+.header a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Styling the searchbar in the header*/
+.header input[type='text'] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
 }
 
 .main {
@@ -32,6 +128,7 @@ h1 {
   margin: 0;
 }
 
+/* Styling the login box */
 .login-page {
   background-color: #fff;
   border-radius: 15px;
@@ -60,6 +157,7 @@ label {
   font-weight: bold;
 }
 
+/* Styling the input fields */
 input {
   display: block;
   width: 100%;
@@ -90,10 +188,11 @@ button {
   align-items: center;
 }
 
-a:link {
+/* Styling the links */
+form > a:link {
   color: #37c6ce;
 }
 
-a:hover {
+form > a:hover {
   color: #2f1c19;
 }

@@ -9,11 +9,47 @@
   </head>
   <body>
     <header class="header">
-      <h1>The Time Traveling Journalist</h1>
-      <!-- hambuger menu and links-->
+      <h1>
+        <button
+          onclick="location.href='http://127.0.0.1:5500/Frontend/index.html'"
+        >
+          The Time Traveling Journalist
+        </button>
+      </h1>
+      <!-- Navigation menu -->
+      <div class="off-screen-menu">
+        <ul>
+          <li><a href="/news">news</a></li>
+          <li><a href="/about">about</a></li>
+          <li><a href="/log-in">log in</a></li>
+          <li><a href="/faq">f.a.q</a></li>
+        </ul>
+      </div>
+      <!-- Search bar -->
+      <div class="search-bar">
+        <input type="text" class="news-input" placeholder="e.g. Science" />
+        <button class="seach-button">Search</button>
+      </div>
+      <!-- Hamburger menu -->
+      <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
     <main class="main">
       <!-- links to different aticles -->
+      <div class="articles">
+        <article class="article">
+          <div class="article-container"></div>
+        </article>
+        <article class="article">
+          <div class="article-container"></div>
+        </article>
+        <article class="article">
+          <div class="article-container"></div>
+        </article>
+      </div>
     </main>
     <footer class="footer"></footer>
   </body>
