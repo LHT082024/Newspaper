@@ -1,26 +1,63 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 /* Styling the front page */
 /* Styling the header */
-.header {
+header {
   background-color: #37c6ce;
   overflow: hidden;
   position: sticky;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 10px;
+  width: 100svw;
+  align-items: center;
+  border: 2px solid red;
 }
 
-.header > h1 {
+header > h1 {
   color: #fff;
-  font-family: sans-serif;
+  font-family: Papyrus, fantasy;
   font-size: 2rem;
+  border: 2px solid blue;
 }
 
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid green;
+  width: max-content;
+}
+/* Styling the searchbar in the header*/
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  margin-right: 50px;
+  border: 2px solid purple;
+  width: max-content;
+}
+input[type='text'] {
+  padding: 6px;
+  border: none;
+  font-size: 17px;
+  width: 200px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+button {
+  width: 10px;
+  padding: 0;
+}
 /* Styling the off-screen-menu */
 .off-screen-menu {
   background-color: #1e4e56;
@@ -46,7 +83,6 @@
 .ham-menu {
   height: 2rem;
   width: 2rem;
-  margin-left: auto;
   position: relative;
 }
 
@@ -98,16 +134,6 @@
   text-decoration: none;
   font-size: 17px;
   display: block;
-}
-
-/* Styling the searchbar in the header*/
-.header input[type='text'] {
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
 }
 
 .main {
