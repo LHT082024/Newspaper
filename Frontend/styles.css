@@ -10,54 +10,52 @@ header {
   background-color: #37c6ce;
   overflow: hidden;
   position: sticky;
+  padding: 10px;
+  width: 100svw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
-  width: 100svw;
   align-items: center;
-  border: 2px solid red;
 }
 
 header > h1 {
   color: #fff;
   font-family: Papyrus, fantasy;
   font-size: 2rem;
-  border: 2px solid blue;
 }
 
 nav {
   display: flex;
-  justify-content: space-evenly;
   flex-direction: row;
+  justify-content: end;
   align-items: center;
-  border: 2px solid green;
-  width: max-content;
 }
-/* Styling the searchbar in the header*/
 
+/* Styling the searchbar in the header*/
 .search-bar {
+  margin-right: 50px;
   display: flex;
   justify-content: center;
-  flex-direction: row;
-  gap: 10px;
-  margin-right: 50px;
-  border: 2px solid purple;
-  width: max-content;
+  gap: 1px;
+  margin-right: 60px;
 }
-input[type='text'] {
+
+.news-input[type='text'] {
   padding: 6px;
   border: none;
   font-size: 17px;
-  width: 200px;
+  width: 300px;
   height: 50px;
   margin-right: 10px;
 }
 
-button {
-  width: 10px;
-  padding: 0;
+.search-button {
+  height: 50px;
+  margin: 0;
+  border: none;
+  border-radius: 10px;
 }
+
 /* Styling the off-screen-menu */
 .off-screen-menu {
   background-color: #1e4e56;
@@ -123,7 +121,7 @@ button {
 
 .header ul {
   list-style: none;
-  font-family: sans-serif;
+  font-family: papyrus, fantasy;
 }
 
 /* Styling the links in the header */
