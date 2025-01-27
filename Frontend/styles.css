@@ -43,8 +43,8 @@
 }
 
 .ham-menu {
-  height: 50px;
-  width: 50px;
+  height: 2rem;
+  width: 2rem;
   margin-left: auto;
   position: relative;
 }
@@ -52,7 +52,8 @@
 .ham-menu span {
   height: 5px;
   width: 100%;
-  background-color: black;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 25px;
   position: absolute;
   top: 50%;
