@@ -1,3 +1,33 @@
+//testing
+const container = document.getElementById('article-container');
+console.log(container);
+function testfecthArticles() {
+  //find the element in html where the data is to be implemented
+  let container = document.getElementById('article-container');
+
+  if (container) {
+    //removes what is already within the html container
+    container.textContent = '';
+
+    let data = {
+      title: 'Pyramids are definitely gonna work this time',
+      content: '10/10 pharaohs say pyramids were a good idea.',
+    };
+
+    let box = document.createElement('li');
+    box.className = 'box';
+    let paragraph = document.createElement('p');
+    paragraph.textContent = `${(data.content, data.title)}`;
+    box = paragraph;
+    console.log(box, container);
+    container.appendChild(box);
+  } else {
+    console.error('Container not found');
+  }
+}
+
+testfecthArticles();
+
 //fetch data with javascript
 async function fetchArticles() {
   try {
@@ -12,14 +42,15 @@ async function fetchArticles() {
 
     if (container) {
       //removes what is already within the html container
-      container.innerHTML = '';
+      container.textContent = '';
 
       data.forEach((article) => {
         const box = document.createElement('li');
         box.className = 'box';
-        box.innerHTML = `
-          <p class="text"><strong>${article.headline}</strong></p>
-        `;
+        const paragraph = document.createElement('p');
+        paragraph.textContent = article.headline;
+        box = paragraph;
+        console.log(box, container);
         container.appendChild(box);
       });
     } else {
@@ -30,7 +61,7 @@ async function fetchArticles() {
   }
 }
 
-fetchArticles();
+//fetchArticles();
 
 //send articles to frontend
 
