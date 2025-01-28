@@ -33,14 +33,14 @@ nav {
 
 /* Styling the searchbar in the header*/
 .search-bar {
-  margin-right: 50px;
+  margin-right: 20px;
   display: flex;
   justify-content: center;
   gap: 1px;
   margin-right: 60px;
 }
 
-.news-input[type='text'] {
+.news-input {
   padding: 6px;
   border: none;
   font-size: 17px;
