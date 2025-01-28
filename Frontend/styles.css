@@ -1,24 +1,68 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 /* Styling the front page */
 /* Styling the header */
-.header {
+header {
   background-color: #37c6ce;
   overflow: hidden;
   position: sticky;
+  padding: 10px;
+  width: 100svw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
 }
 
-.header > h1 {
+header > h1 {
   color: #fff;
-  font-family: sans-serif;
+  font-family: Papyrus, fantasy;
   font-size: 2rem;
+}
+
+/* Styling the searchbar and offscreen menu */
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+/* Styling the searchbar in the header*/
+.search-bar {
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  margin-right: 60px;
+}
+
+.news-input {
+  padding: 6px;
+  border: none;
+  font-size: 17px;
+  width: 300px;
+  height: 50px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.search-button {
+  height: 50px;
+  width: 50px;
+  margin: 0;
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+}
+
+.search-button svg {
+  width: 25px;
+  height: 25px;
 }
 
 /* Styling the off-screen-menu */
@@ -43,10 +87,10 @@
   right: 0;
 }
 
+/* Styling the ham menu */
 .ham-menu {
   height: 2rem;
   width: 2rem;
-  margin-left: auto;
   position: relative;
 }
 
@@ -71,6 +115,7 @@
   top: 75%;
 }
 
+/* Animating the ham menu */
 .ham-menu.active span:nth-child(1) {
   top: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
@@ -85,29 +130,19 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.header ul {
+/* Styling the links in the offscreen menu */
+.off-screen-menu ul {
   list-style: none;
-  font-family: sans-serif;
+  font-family: papyrus, fantasy;
 }
 
-/* Styling the links in the header */
-.header a {
+.off-screen-menu a {
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
   display: block;
-}
-
-/* Styling the searchbar in the header*/
-.header input[type='text'] {
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
 }
 
 .main {
