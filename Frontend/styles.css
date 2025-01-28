@@ -119,13 +119,13 @@ nav {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.header ul {
+.off-screen-menu ul {
   list-style: none;
   font-family: papyrus, fantasy;
 }
 
 /* Styling the links in the header */
-.header a {
+.off-screen-menu a {
   color: white;
   text-align: center;
   padding: 14px 16px;
