@@ -145,12 +145,21 @@ nav {
   display: block;
 }
 
-.main {
-  .article-container {
-  }
+main {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.footer {
+#article-container {
+  border: black solid;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+footer {
 }
 
 /* Styling the login page */
