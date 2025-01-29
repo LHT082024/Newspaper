@@ -1,7 +1,7 @@
 //testing
 const container = document.getElementById('article-container');
 console.log(container);
-function testfecthArticles() {
+function testfetchArticles() {
   //find the element in html where the data is to be implemented
   let container = document.getElementById('article-container');
 
@@ -25,8 +25,7 @@ function testfecthArticles() {
     console.error('Container not found');
   }
 }
-
-testfecthArticles();
+testfetchArticles();
 
 //fetch data with javascript
 async function fetchArticles() {
