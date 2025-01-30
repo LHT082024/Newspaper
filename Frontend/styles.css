@@ -20,7 +20,6 @@ h1 {
   font-size: 2rem;
 }
 
-/* Styling the searchbar and offscreen menu */
 nav {
   display: flex;
   flex-direction: row;
@@ -28,6 +27,7 @@ nav {
   justify-content: space-between;
 }
 
+/* Styling where the searchbar and hamburger meny will be on the page */
 #search-and-hamburger {
   display: flex;
   align-items: center;
@@ -41,8 +41,7 @@ nav {
   align-items: center;
 }
 
-/* Styling the searchbar in the header*/
-
+/* Styling the searchbar */
 .news-input {
   text-align: center;
   margin-left: 100px;
@@ -96,7 +95,7 @@ nav {
   right: 0;
 }
 
-/* Styling the ham menu */
+/* Styling the hamburger menu */
 .ham-menu {
   height: 2rem;
   width: 2rem;
@@ -154,6 +153,7 @@ nav {
   display: block;
 }
 
+/* Styling the main */
 .article-container {
   display: grid;
   gap: 10px;
