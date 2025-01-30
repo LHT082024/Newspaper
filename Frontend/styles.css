@@ -154,21 +154,6 @@ nav {
   display: block;
 }
 
-/* Erik B var her :D */
-
-/* main {
-  margin: 50px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-} */
-
-/* article {
-  border: black solid;
-  display: flex;
-  flex-direction: column;
-  flex: auto;
-} */
 .article-container {
   display: grid;
   gap: 10px;
@@ -245,14 +230,14 @@ label {
 }
 
 /* Styling the input fields */
-/* input {
+input {
   display: block;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 5px;
-} */
+}
 
 /* Styling the button */
 button {
