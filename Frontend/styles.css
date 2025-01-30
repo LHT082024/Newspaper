@@ -219,7 +219,7 @@ footer {
   color: #2f1c19;
 }
 
-label {
+.login-label {
   display: block;
   width: 100%;
   margin-top: 10px;
@@ -230,7 +230,7 @@ label {
 }
 
 /* Styling the input fields */
-input {
+.login-input {
   display: block;
   width: 100%;
   padding: 10px;
@@ -240,7 +240,7 @@ input {
 }
 
 /* Styling the button */
-button {
+.login-button {
   padding: 15px;
   border-radius: 10px;
   margin-top: 15px;
