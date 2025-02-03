@@ -37,7 +37,7 @@ async function fetchArticles() {
     console.log('Articles:', data);
 
     //find the element in html where the data is to be implemented
-    const container = document.getElementById('article-container');
+    const container = document.getElementsByClassName('article-container');
 
     if (container) {
       //removes what is already within the html container
@@ -60,7 +60,7 @@ async function fetchArticles() {
   }
 }
 
-//fetchArticles();
+fetchArticles();
 
 //send articles to frontend
 
