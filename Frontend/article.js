@@ -1,23 +1,30 @@
-const articles = JSON.parse(sessionStorage.getItem('article'));
+const articleId = sessionStorage.getItem('articleId');
 
-if (articles && articles.length > 0) {
-  const container = document.getElementsByClassName('article-container')[0];
-  const articleElements = container.children;
+async function fetchArticleDetails() {
+  try {
+    let response = await fetch(
+      'http://localhost:5095/api/Article/${articleId}'
+    );
+    if (!response.ok) throw new Error('HTTP error ' + response.status);
 
-  articles.forEach((article, index) => {
-    if (articleElements[index]) {
-      const articleElement = articleElements[index];
+    let article = await response.json();
+    console.log('Article details:', article);
 
-      const articleTitle = document.createElement('h2');
-      articleTitle.textContent = article.headline;
+    const container = document.querySelector('.article-container');
+    const articleTitle = document.createElement('h2');
+    articleTitle.textContent = article.headline;
+    container.appendChild(articleTitle);
 
-      const articleContent = document.createElement('p');
-      articleContent.textContent = article.content;
+    const articleContent = document.createElement('p');
+    articleContent.textContent = article.content;
+    container.appendChild(articleContent);
 
-      articleElement.appendChild(articleTitle);
-      articleElement.appendChild(articleContent);
-    }
-  });
-} else {
-  console.error('No articles found in sessionStorage');
+    const articleImage = document.createElement('img');
+    articleImage.src = article.imageURL || '';
+    container.appendChild(articleImage);
+  } catch (error) {
+    console.error('Error fetching article:', error);
+  }
 }
+
+fetchArticleDetails();

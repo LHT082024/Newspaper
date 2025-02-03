@@ -7,35 +7,41 @@ async function fetchArticles() {
     let data = await response.json();
     console.log('Articles:', data);
 
-    sessionStorage.setItem('articles', JSON.stringify(data));
-
     //find the element in html where the data is to be implemented
-    const containers = document.getElementsByClassName('article-container');
+    const containers = document.querySelector('.article-container');
 
-    if (containers.length === 0) {
-      console.error('No article containers found');
-      return;
-    }
+    if (container) {
+      container.innerHTML = '';
 
-    Array.from(containers).forEach((container, index) => {
-      container.textContent = '';
+      data.forEach((article, index) => {
+        const articleElement = document.createElement('div');
+        articleElement.classList.add('article');
 
-      let articlesForContainer = data.slice(index * 3, (index + 1) * 3);
+        const headline = document.createElement('a');
+        headline.href = '#';
+        headline.textContent = article.headline;
 
-      articlesForContainer.forEach((article) => {
-        const box = document.createElement('li');
-        box.className = 'box';
+        headline.addEventListener('click', () => openArticle(article.id));
 
-        const paragraph = document.createElement('p');
-        paragraph.textContent = article.headline;
+        articleElement.appendChild(headline);
 
-        box.appendChild(paragraph);
-        container.appendChild(box);
+        const articleImage = document.createElement('img');
+        articleImage.src = article.imageURL || '';
+        articleElement.appendChild(articleImage);
+
+        container.appendChild(articleElement);
       });
-    });
+    } else {
+      console.error('Article container not found');
+    }
   } catch (error) {
-    console.error('Fetch Error', error);
+    console.error('Fetch Error:', error);
   }
+}
+
+function openArticle(articleId) {
+  sessionStorage.setItem('articleId', articleId);
+  window.location.href = '/article-page.html';
 }
 
 fetchArticles();
