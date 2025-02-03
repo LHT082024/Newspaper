@@ -36,6 +36,7 @@ namespace Newspaper.Controllers
             return Ok(new { Message = "Login Sucessful", _context = user });
         }
 
+        //Checking who is logged in
         [HttpGet("currentuser")]
         public IActionResult CurrentUser()
         {
@@ -47,6 +48,16 @@ namespace Newspaper.Controllers
             }
 
             return Ok(new { Message = "current user", User = username });
+        }
+
+
+        //logout
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            return Ok(new { Message = "You have logged out" });
         }
 
     }
