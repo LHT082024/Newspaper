@@ -1,31 +1,31 @@
-//testing
-const container = document.getElementById('article-container');
-console.log(container);
-function testfetchArticles() {
-  //find the element in html where the data is to be implemented
-  let container = document.getElementById('article-container');
+// //testing
+// const container = document.getElementById('article-container');
+// console.log(container);
+// function testfetchArticles() {
+//   //find the element in html where the data is to be implemented
+//   let container = document.getElementById('article-container');
 
-  if (container) {
-    //removes what is already within the html container
-    container.textContent = '';
+//   if (container) {
+//     //removes what is already within the html container
+//     container.textContent = '';
 
-    let data = {
-      title: 'Pyramids are definitely gonna work this time',
-      content: '10/10 pharaohs say pyramids were a good idea.',
-    };
+//     let data = {
+//       title: 'Pyramids are definitely gonna work this time',
+//       content: '10/10 pharaohs say pyramids were a good idea.',
+//     };
 
-    let box = document.createElement('li');
-    box.className = 'box';
-    let paragraph = document.createElement('p');
-    paragraph.textContent = `${(data.content, data.title)}`;
-    box = paragraph;
-    console.log(box, container);
-    container.appendChild(box);
-  } else {
-    console.error('Container not found');
-  }
-}
-testfetchArticles();
+//     let box = document.createElement('li');
+//     box.className = 'box';
+//     let paragraph = document.createElement('p');
+//     paragraph.textContent = `${(data.content, data.title)}`;
+//     box = paragraph;
+//     console.log(box, container);
+//     container.appendChild(box);
+//   } else {
+//     console.error('Container not found');
+//   }
+// }
+// testfetchArticles();
 
 //fetch data with javascript
 async function fetchArticles() {
@@ -37,30 +37,72 @@ async function fetchArticles() {
     console.log('Articles:', data);
 
     //find the element in html where the data is to be implemented
-    const container = document.getElementById('article-container');
+    const containers = document.getElementsByClassName('article-container');
 
-    if (container) {
-      //removes what is already within the html container
+    if (containers.length === 0) {
+      console.error('No article containers found');
+      return;
+    }
+
+    Array.from(containers).forEach((container, index) => {
       container.textContent = '';
 
-      data.forEach((article) => {
+      let articlesForContainer = data.slice(index * 3, (index + 1) * 3);
+
+      articlesForContainer.forEach((article) => {
         const box = document.createElement('li');
         box.className = 'box';
-        const paragraph = document.createElement('p');
+
+        const paragraaph = document.createElement('p');
         paragraph.textContent = article.headline;
-        box = paragraph;
-        console.log(box, container);
+
+        box.appendChild(paragraph);
         container.appendChild(box);
       });
-    } else {
-      console.error('Container not found');
-    }
+    });
   } catch (error) {
-    console.error('Fetch Error:', error);
+    console.error('Fetch Error', error);
   }
 }
 
-//fetchArticles();
+fetchArticles();
+
+// if (containers.length > 0) {
+//   const container = containers[0];
+//   container.textContent = '';
+
+//   data.ForEach((article) => {
+//     const box = document.createElement('li');
+//     box.className = 'box';
+
+//     const paragraph = document.createElement('p');
+//     paragraph.textContent = article.headline;
+
+//     box.appendChild(paragraph);
+//     container.appendChild(box);
+//   });
+// } else {
+//   console.error('Container not found');
+// }
+
+//   if (container) {
+//     //removes what is already within the html container
+//     container.textContent = '';
+
+//     data.forEach((article) => {
+//       const box = document.createElement('li');
+//       box.className = 'box';
+//       const paragraph = document.createElement('p');
+//       paragraph.textContent = article.headline;
+//       box.appendChild(paragraph);
+//       container.appendChild(box);
+//     });
+//   } else {
+//     console.error('Container not found');
+//   }
+// } catch (error) {
+//   console.error('Fetch Error:', error);
+// }
 
 //send articles to frontend
 
