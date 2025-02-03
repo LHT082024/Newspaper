@@ -55,6 +55,8 @@ async function fetchArticleDetails(articleId) {
   }
 }
 
+sessionStorage.setItem('articles', JSON.stringify(articlesArray));
+
 //send articles to frontend
 
 //send data to backend
