@@ -34,7 +34,6 @@ namespace Newspaper.Controllers
             HttpContext.Session.SetString("LoggedInUser", user.Name);
 
             return Ok(new { Message = "Login Sucessful", _context = user });
-
         }
 
     }

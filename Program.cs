@@ -10,6 +10,8 @@ builder.Services.AddDbContext<DbContextClass>(options =>
 
 builder.Services.AddControllers();
 
+
+//use session based saving so that when you login its saved in cookies
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(Options =>
 {
