@@ -178,7 +178,28 @@ nav {
     'c c c';
 }
 
-#article1 {
+.article-container a {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
+}
+
+.article-container a:hover {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.article-container img {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* #article1 {
   grid-area: a;
   background: blue;
   border-radius: 10px;
@@ -194,7 +215,7 @@ nav {
   grid-area: c;
   background: green;
   border-radius: 10px;
-}
+} */
 
 footer {
 }
