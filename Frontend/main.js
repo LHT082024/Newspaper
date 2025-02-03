@@ -7,7 +7,7 @@ async function fetchArticles() {
     let data = await response.json();
     console.log('Articles:', data);
 
-    sessionStorage.setItem('articles', JSON.stringify(articlesArray));
+    sessionStorage.setItem('articles', JSON.stringify(data));
 
     //find the element in html where the data is to be implemented
     const containers = document.getElementsByClassName('article-container');
