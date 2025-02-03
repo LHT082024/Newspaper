@@ -19,7 +19,7 @@ namespace Newspaper.Controllers
             _context = context;
         }
 
-        //method needed to login
+        //method needed to login saves profileName and profiletype in the session
         [HttpPost("login")]
         public IActionResult Login([FromBody] ProfileModel profileModel)
         {
@@ -52,7 +52,7 @@ namespace Newspaper.Controllers
         }
 
 
-        //loging out by clearing session memory
+        //logging out by clearing session memory
         [HttpPost("logout")]
         public IActionResult Logout()
         {
