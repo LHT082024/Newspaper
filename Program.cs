@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Newspaper.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DbContextClass>(options =>
@@ -31,7 +32,13 @@ if (app.Environment.IsDevelopment())
 
 }
 
-app.UseStaticFiles();
+// app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Frontend")),
+    RequestPath = ""
+});
 app.UseDefaultFiles();
 
 app.UseCors("AllowAll");
