@@ -53,7 +53,7 @@ async function fetchArticles() {
         const box = document.createElement('li');
         box.className = 'box';
 
-        const paragraaph = document.createElement('p');
+        const paragraph = document.createElement('p');
         paragraph.textContent = article.headline;
 
         box.appendChild(paragraph);
@@ -107,31 +107,31 @@ fetchArticles();
 //send articles to frontend
 
 //send data to backend
-async function createArticle() {
-  let newArticle = {
-    title: 'Pyramids are definitely gonna work this time',
-    content: '10/10 pharaohs say pyramids were a good idea.',
-  };
+// async function createArticle() {
+//   let newArticle = {
+//     title: 'Pyramids are definitely gonna work this time',
+//     content: '10/10 pharaohs say pyramids were a good idea.',
+//   };
 
-  try {
-    let response = await fetch('http://localhost:5095/api/Article', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newArticle),
-    });
+//   try {
+//     let response = await fetch('http://localhost:5095/api/Article', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(newArticle),
+//     });
 
-    if (!response.ok) throw new Error('HTTP error ' + response.status);
+//     if (!response.ok) throw new Error('HTTP error ' + response.status);
 
-    let result = await response.json();
-    console.log('Created:', result);
-  } catch (error) {
-    console.error('POST Error:', error);
-  }
-}
+//     let result = await response.json();
+//     console.log('Created:', result);
+//   } catch (error) {
+//     console.error('POST Error:', error);
+//   }
+// }
 
-createArticle();
+// createArticle();
 
 //login
 async function Login() {}
