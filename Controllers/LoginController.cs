@@ -12,8 +12,8 @@ namespace Newspaper.Controllers
 {
     public class LoginController : ControllerBase
     {
+        //imports databaseContext
         private readonly DbContextClass _context;
-
         public LoginController(DbContextClass context)
         {
             _context = context;
@@ -34,6 +34,19 @@ namespace Newspaper.Controllers
             HttpContext.Session.SetString("LoggedInUser", user.Name);
 
             return Ok(new { Message = "Login Sucessful", _context = user });
+        }
+
+        [HttpGet("currentuser")]
+        public IActionResult CurrentUser()
+        {
+            var username = HttpContext.Session.GetString("LoggedInUser");
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized(new { Message = "No user is logged in" });
+            }
+
+            return Ok(new { Message = "current user", User = username });
         }
 
     }
