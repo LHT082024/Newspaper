@@ -164,6 +164,7 @@ nav {
   width: 100%;
   justify-content: center;
   padding: 1rem;
+  padding-top: 80px;
   grid-template-columns: repeat(3, 20rem);
   grid-template-rows: repeat(4, 20em);
   grid-template-areas:
