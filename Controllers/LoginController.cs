@@ -12,7 +12,7 @@ namespace Newspaper.Controllers
 {
     public class LoginController : ControllerBase
     {
-        //imports databaseContext
+        //imports databaseContext to the class
         private readonly DbContextClass _context;
         public LoginController(DbContextClass context)
         {
@@ -38,7 +38,7 @@ namespace Newspaper.Controllers
         }
 
         //Checking who is logged in
-        [HttpGet("currentuser")]
+        [HttpGet("currentUser")]
         public IActionResult CurrentUser()
         {
             var username = HttpContext.Session.GetString("LoggedInUser");
