@@ -20,12 +20,22 @@ namespace Newspaper.Controllers
         }
 
         //method needed to login
-        // [HttpPost("login")]
-        // public IActionResult Login([FromBody] ProfileModel profileModel, DbContextClass _context)
-        // {
-        //     var user = _context.profileModels.FirstOrDefault(u =>
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] ProfileModel profileModel)
+        {
+            var user = _context.profileModels.FirstOrDefault(u =>
+            u.Name == profileModel.Name &&
+            u.Password == profileModel.Password);
 
-        // }
+            if (user == null)
+            {
+                return Unauthorized(new { Message = "Invalid username or password" });
+            }
+            HttpContext.Session.SetString("LoggedInUser", user.Name);
+
+            return Ok(new { Message = "Login Sucessful", _context = user });
+
+        }
 
     }
 }
