@@ -32,6 +32,7 @@ namespace Newspaper.Controllers
                 return Unauthorized(new { Message = "Invalid username or password" });
             }
             HttpContext.Session.SetString("LoggedInUser", user.Name);
+            HttpContext.Session.SetString("ProfilyeType", user.ProfileType);
 
             return Ok(new { Message = "Login Sucessful", _context = user });
         }
@@ -51,7 +52,7 @@ namespace Newspaper.Controllers
         }
 
 
-        //logout
+        //loging out by clearing session memory
         [HttpPost("logout")]
         public IActionResult Logout()
         {
