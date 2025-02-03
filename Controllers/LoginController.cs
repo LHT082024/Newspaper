@@ -19,7 +19,7 @@ namespace Newspaper.Controllers
             _context = context;
         }
 
-        //method needed to login saves profileName and profiletype in the session
+        //method needed to login. saves profileName and profileType in the session
         [HttpPost("login")]
         public IActionResult Login([FromBody] ProfileModel profileModel)
         {
