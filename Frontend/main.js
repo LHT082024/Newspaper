@@ -7,6 +7,8 @@ async function fetchArticles() {
     let data = await response.json();
     console.log('Articles:', data);
 
+    sessionStorage.setItem('articles', JSON.stringify(articlesArray));
+
     //find the element in html where the data is to be implemented
     const containers = document.getElementsByClassName('article-container');
 
@@ -54,8 +56,6 @@ async function fetchArticleDetails(articleId) {
     console.error('Fetch Error:', error);
   }
 }
-
-sessionStorage.setItem('articles', JSON.stringify(articlesArray));
 
 //send articles to frontend
 
