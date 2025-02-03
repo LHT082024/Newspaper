@@ -8,7 +8,7 @@ async function fetchArticles() {
     console.log('Articles:', data);
 
     //find the element in html where the data is to be implemented
-    const containers = document.querySelector('.article-container');
+    const container = document.querySelector('.article-container');
 
     if (container) {
       container.innerHTML = '';
