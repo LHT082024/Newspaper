@@ -1,10 +1,6 @@
 const articleId = sessionStorage.getItem('articleId');
 
 async function fetchArticleDetails() {
-  if (!articleId) {
-    console.error('No article ID found in sessionStorage.');
-    return;
-  }
   try {
     let response = await fetch(
       `http://localhost:5095/api/Article/${articleId}`
@@ -20,7 +16,7 @@ async function fetchArticleDetails() {
       return;
     }
 
-    container.innerHTML = '';
+    container.textContent = '';
 
     const articleTitle = document.createElement('h2');
     articleTitle.textContent = article.headline;
