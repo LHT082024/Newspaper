@@ -2,7 +2,7 @@ const articleId = sessionStorage.getItem('articleId');
 
 async function fetchArticleDetails() {
   if (!articleId) {
-    console.error('No article ID found in sessionStorge.');
+    console.error('No article ID found in sessionStorage.');
     return;
   }
   try {
