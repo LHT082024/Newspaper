@@ -10,30 +10,36 @@ async function fetchArticles() {
     //find the element in html where the data is to be implemented
     const container = document.querySelector('.article-container');
 
-    if (container) {
-      container.innerHTML = '';
-
-      data.forEach((article, index) => {
-        const articleElement = document.createElement('div');
-        articleElement.classList.add('article');
-
-        const headline = document.createElement('a');
-        headline.href = '#';
-        headline.textContent = article.headline;
-
-        headline.addEventListener('click', () => openArticle(article.id));
-
-        articleElement.appendChild(headline);
-
-        const articleImage = document.createElement('img');
-        articleImage.src = article.imageURL || '';
-        articleElement.appendChild(articleImage);
-
-        container.appendChild(articleElement);
-      });
-    } else {
+    if (!container) {
       console.error('Article container not found');
+      return;
     }
+
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+
+    data.forEach((article) => {
+      const articleElement = document.createElement('div');
+      articleElement.classList.add('article');
+
+      const headline = document.createElement('a');
+      headline.href = '#';
+      headline.textContent = article.headline;
+
+      headline.addEventListener('click', () => openArticle(article.id));
+
+      articleElement.appendChild(headline);
+
+      if (article.imageURL) {
+        const articleImage = document.createElement('img');
+        articleImage.src = article.imageURL;
+        articleImage.alt = article.headline || 'Article image';
+        articleElement.appendChild(articleImage);
+      }
+
+      container.appendChild(articleElement);
+    });
   } catch (error) {
     console.error('Fetch Error:', error);
   }
