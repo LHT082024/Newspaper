@@ -11,6 +11,8 @@ builder.Services.AddDbContext<DbContextClass>(options =>
 builder.Services.AddControllers();
 
 
+
+
 //use session based saving so that when you login its saved in cookies
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(Options =>
@@ -32,6 +34,16 @@ builder.Services.AddCors(options =>
            });
        });
 
+builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+        });
+
 var app = builder.Build();
 
 // makes sure we use swagger
@@ -50,6 +62,13 @@ app.UseStaticFiles(new StaticFileOptions
         Path.Combine(Directory.GetCurrentDirectory(), "Frontend")),
     RequestPath = ""
 });
+
+app.UseCors(policy =>
+        policy.WithOrigins("http://localhost:5500") // Allow requests from the frontend
+          .AllowAnyHeader()
+          .AllowAnyMethod());
+
+
 app.UseDefaultFiles();
 
 app.UseCors("AllowAll");
