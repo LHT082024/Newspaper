@@ -46,8 +46,7 @@ async function fetchArticles() {
 }
 
 function openArticle(articleId) {
-  sessionStorage.setItem('articleId', articleId);
-  window.location.href = '/article-page.html';
+  window.location.href = `/article-page.html?articleId=${articleId}`;
 }
 
 fetchArticles();
@@ -68,6 +67,25 @@ async function fetchArticleDetails(articleId) {
     console.error('Fetch Error:', error);
   }
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Add click listeners to all headline elements
+  const headlines = document.querySelectorAll('.headline');
+
+  headlines.forEach(headline => {
+    headline.addEventListener('click', (event) => {
+      headline.addEventListener('click', () => openArticle(article.id));
+      
+      const articleId = parseInt(event.target.getAttribute('data-id'), 10); // Get the article ID
+      console.log("Clicked headline for article ID:", articleId); // Debugging
+      
+      // Redirect to the article page with the ID as a query parameter
+      window.location.href = `article-page.html?articleId=${articleId}`;
+    });
+  });
+});
+
 
 //send articles to frontend
 
