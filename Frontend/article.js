@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Function to fetch and display the article
+  
+  //this function takes the articles from the database and returns the articles as 
+  //a json object and places that article in a container from html
   async function getArticle(articleId) {
     try {
       const response = await fetch(`http://localhost:5095/api/Article`);
@@ -19,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Display the article details
+      // here we take the article object and displays specific parts of it using the model class
+      //to sort it. 
       container.innerHTML = `
         <h1>${article.headline}</h1>
         <p>${article.story}</p>
@@ -29,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Get the article ID from the URL
+  // we have already decided that we only want to display one article decided via an id
+  //this code decides which article we will display based on the id in the url of the
+  //headline we just clikced
   const params = new URLSearchParams(window.location.search);
   const articleId = parseInt(params.get('articleId'), 10);
 
