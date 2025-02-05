@@ -161,6 +161,10 @@ nav {
   display: block;
 }
 
+main {
+  padding: 80px;
+}
+
 /* Styling the main */
 .article-container {
   display: grid;
