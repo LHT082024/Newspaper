@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       container.innerHTML = `
         <h2>${article.headline}</h2>
         <p>${article.story}</p>
+        <img src="${article.imagePath}" alt="" height="200px" width="400px">
       `;
     } catch (error) {
       console.error("Error fetching article:", error);

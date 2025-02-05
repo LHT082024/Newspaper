@@ -12,6 +12,7 @@ namespace Newspaper.Models
         public string? Headline { get; set; }
         public string? Story { get; set; }
         public int ID { get; set; }
+        public string? ImagePath { get; set; }
 
     }
 }
