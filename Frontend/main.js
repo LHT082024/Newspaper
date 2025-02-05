@@ -31,9 +31,9 @@ async function fetchArticles() {
 
       articleElement.appendChild(headline);
 
-      if (article.imageURL) {
+      if (article.imagePath) {
         const articleImage = document.createElement('img');
-        articleImage.src = article.imageURL;
+        articleImage.src = article.imagePath;
         articleImage.alt = article.headline || 'Article image';
         articleElement.appendChild(articleImage);
       }
@@ -68,7 +68,6 @@ async function fetchArticleDetails(articleId) {
   }
 }
 
-
 //we add an event listener so that the program knows when we are clicking the button.
 //this event listener then sees the Id of the headline we clicked and will then open a webpage
 //displaying the story that has the same Id as the headline just clicked
@@ -76,19 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add click listeners to all headline elements
   const headlines = document.querySelectorAll('.headline');
 
-  headlines.forEach(headline => {
+  headlines.forEach((headline) => {
     headline.addEventListener('click', (event) => {
       headline.addEventListener('click', () => openArticle(article.id));
-      
+
       const articleId = parseInt(event.target.getAttribute('data-id'), 10); // Get the article ID
-      console.log("Clicked headline for article ID:", articleId); // Debugging
-      
+      console.log('Clicked headline for article ID:', articleId); // Debugging
+
       // Redirect to the article page with the ID as a query parameter
       window.location.href = `article-page.html?articleId=${articleId}`;
     });
   });
 });
-
 
 //send articles to frontend
 
