@@ -6,18 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const article = await response.json();
-      console.log(article); // Check the structure of the article object
+      const articles = await response.json(); // The response is an array of articles
+      console.log(articles); // Check the array structure in the console
 
+      const article = articles.find(a => a.id === articleId); // Find the article with the correct ID
       const container = document.getElementById('article-content');
-      container.innerHTML = 
-      `<h1>${article}</h1>
-      <p>${article}</p>`; 
-      // Use the correct property names from your JSON
+
+      if (!article) {
+        container.innerHTML = `<p>No article found for ID ${articleId}.</p>`;
+        return;
+      }
+
+      // Display the headline and story
+      container.innerHTML = `
+        <h1>${article.headline}</h1>
+        <p>${article.story}</p>
+      `;
     } catch (error) {
       console.error("Error fetching article:", error);
     }
   }
 
-  getArticle(13);
+  getArticle(13); // Pass the desired article ID
 });
