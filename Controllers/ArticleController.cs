@@ -43,6 +43,17 @@ namespace Newspaper.Controllers
             return Ok(article);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var article = await _context.articleModels.FirstOrDefaultAsync(a => a.ID == id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            return Ok(article);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] ArticleModel _updatedArticle)
         {

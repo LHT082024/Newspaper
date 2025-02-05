@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(article); // Check the structure of the article object
 
       const container = document.getElementById('article-content');
-      container.innerHTML = `<h1>${article}</h1><p>${article}</p>`; 
+      container.innerHTML = 
+      `<h1>${article}</h1>
+      <p>${article}</p>`; 
       // Use the correct property names from your JSON
     } catch (error) {
       console.error("Error fetching article:", error);
