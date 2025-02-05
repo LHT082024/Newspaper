@@ -1,4 +1,4 @@
-//fetch data with javascript
+//fetch data and returns it as a json via url
 async function fetchArticles() {
   try {
     let response = await fetch('http://localhost:5095/api/Article');
@@ -69,6 +69,9 @@ async function fetchArticleDetails(articleId) {
 }
 
 
+//we add an event listener so that the program knows when we are clicking the button.
+//this event listener then sees the Id of the headline we clicked and will then open a webpage
+//displaying the story that has the same Id as the headline just clicked
 document.addEventListener('DOMContentLoaded', () => {
   // Add click listeners to all headline elements
   const headlines = document.querySelectorAll('.headline');
