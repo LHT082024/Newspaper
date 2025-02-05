@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // here we take the article object and displays specific parts of it using the model class
       //to sort it. 
       container.innerHTML = `
-        <h1>${article.headline}</h1>
+        <h2>${article.headline}</h2>
         <p>${article.story}</p>
       `;
     } catch (error) {
