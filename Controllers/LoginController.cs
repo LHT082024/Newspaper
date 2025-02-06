@@ -10,6 +10,8 @@ using Newspaper.Models;
 
 namespace Newspaper.Controllers
 {
+    [ApiController]
+    [Route("api/Login")]
     public class LoginController : ControllerBase
     {
         //imports databaseContext to the class
