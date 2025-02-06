@@ -48,7 +48,7 @@ nav {
 }
 
 /* Styling the searchbar */
-.news-input {
+#search-input {
   text-align: center;
   margin-left: 100px;
   display: flex;
