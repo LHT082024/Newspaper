@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionStorage.setItem('LoggedInUser', username);
 
       // Redirect to home page
-      window.location.href = 'index.html';
+      window.location.href = '/index.html';
     } catch (error) {
       console.error('Login Error:', error);
       messageBox.textContent = error.message; //show error message on page
