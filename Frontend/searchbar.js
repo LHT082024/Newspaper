@@ -1,3 +1,5 @@
+
+//retrives elements from html
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search-input");
     const searchButton = document.querySelector(".search-button");
