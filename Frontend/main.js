@@ -10,6 +10,7 @@ async function fetchArticles() {
     //find the element in html where the data is to be implemented
     const container = document.querySelector('.article-container');
 
+    //if the element doesn't exist, return error message
     if (!container) {
       console.error('Article container not found');
       return;
