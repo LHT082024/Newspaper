@@ -1,14 +1,16 @@
 //fetch data and returns it as a json via url
+let articles  = [];
+
 async function fetchArticles() {
   try {
     let response = await fetch('http://localhost:5095/api/Article');
     if (!response.ok) throw new Error('HTTP error ' + response.status);
 
-    let data = await response.json();
-    console.log('Articles:', data);
-
+    articles = await response.json();
+    console.log('Articles:', articles);
     //find the element in html where the data is to be implemented
     const container = document.querySelector('.article-container');
+
 
     //if the element doesn't exist, return error message
     if (!container) {
@@ -20,7 +22,7 @@ async function fetchArticles() {
       container.removeChild(container.firstChild);
     }
 
-    data.forEach((article) => {
+    articles.forEach((article) => {
       const articleElement = document.createElement('div');
       articleElement.classList.add('article');
 
@@ -45,6 +47,9 @@ async function fetchArticles() {
     console.error('Fetch Error:', error);
   }
 }
+
+
+
 
 function openArticle(articleId) {
   window.location.href = `/article-page.html?articleId=${articleId}`;
