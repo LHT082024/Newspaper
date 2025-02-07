@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // here we take the article object and displays specific parts of it using the model class
       //to sort it.
       container.innerHTML = `
-        <img src="${article.imagePath}" alt="" height="200px" width="400px">
         <h2>${article.headline}</h2>
+        <img src="${article.imagePath}" alt="" height="200px" width="400px">
         <p>${article.story}</p>
       `;
     } catch (error) {
