@@ -220,24 +220,6 @@ main {
   object-fit: contain; /* Prevent stretching */
 }
 
-/* #article1 {
-  grid-area: a;
-  background: blue;
-  border-radius: 10px;
-}
-
-#article2 {
-  grid-area: b;
-  background: red;
-  border-radius: 10px;
-}
-
-#article3 {
-  grid-area: c;
-  background: green;
-  border-radius: 10px;
-} */
-
 footer {
 }
 
@@ -330,7 +312,3 @@ form > a:hover {
     'main-article main-article article'
     'main-article main-article article-two';
 }
-
-/* #article2 {
-  grid-area: article-two;
-} */
