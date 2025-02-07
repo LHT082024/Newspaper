@@ -213,6 +213,13 @@ main {
   padding-top: 80px;
 }
 
+/* Ensure images scale properly */
+.article-content img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Prevent stretching */
+}
+
 /* #article1 {
   grid-area: a;
   background: blue;
