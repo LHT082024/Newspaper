@@ -169,7 +169,7 @@ main {
 /* Styling the main */
 .article-container {
   display: grid;
-  gap: 20px;
+  gap: 140px;
   width: 100%;
   justify-content: center;
   padding: 1rem;
