@@ -1,3 +1,4 @@
+// create html form for adding and editing articles
 <form id="article-form">
   <input type="hidden" id="article-id" />
   <label for="headline">Headline:</label>
@@ -12,6 +13,7 @@
   <button type="submit">Save Article</button>
 </form>
 
+// handle form submission with javascript
 document.getElementById('article-form').addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -65,8 +67,7 @@ function clearForm() {
   document.getElementById('article-id').value = ''; // Clear article ID if editing
 }
 
-<button class="edit-button" data-id="1">Edit</button>
-
+// pre-fill the form for editing an article
 document.querySelectorAll('.edit-button').forEach(button => {
   button.addEventListener('click', async (event) => {
     const articleId = event.target.getAttribute('data-id');
@@ -88,6 +89,7 @@ document.querySelectorAll('.edit-button').forEach(button => {
   });
 });
 
+// delete articles
 document.querySelectorAll('.delete-button').forEach(button => {
   button.addEventListener('click', async (event) => {
     const articleId = event.target.getAttribute('data-id');
@@ -109,3 +111,77 @@ document.querySelectorAll('.delete-button').forEach(button => {
   });
 });
 
+// hide button based on users role
+// Assuming you have a JWT token stored in localStorage
+const token = localStorage.getItem('auth-token'); // Retrieve token
+if (token) {
+  const decoded = decodeJwt(token); // Decode the JWT to get the user info
+  const userRole = decoded.role; // Get user role from the token (e.g., 'editor' or 'reader')
+
+  // Show the button if the user is an editor
+  if (userRole === 'editor') {
+    document.getElementById('add-article-btn').style.display = 'block';
+  }
+}
+
+// Example function to decode JWT (you can use a library like jwt-decode)
+function decodeJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
+
+// add article
+// Event listener for the "Add Article" button
+const addArticleBtn = document.getElementById('add-article-btn');
+addArticleBtn.addEventListener('click', () => {
+  // Handle the action when the button is clicked
+  openAddArticleForm();
+});
+
+// Example function to show the add article form (you can create the form dynamically or display an existing one)
+function openAddArticleForm() {
+  const formContainer = document.createElement('div');
+  formContainer.innerHTML = `
+    <form id="add-article-form">
+      <input type="text" id="article-title" placeholder="Article Title" required />
+      <textarea id="article-content" placeholder="Article Content" required></textarea>
+      <button type="submit">Submit Article</button>
+    </form>
+  `;
+  document.body.appendChild(formContainer);
+
+  const form = document.getElementById('add-article-form');
+  form.addEventListener('submit', handleAddArticle);
+}
+
+function handleAddArticle(event) {
+  event.preventDefault();
+
+  const title = document.getElementById('article-title').value;
+  const content = document.getElementById('article-content').value;
+
+  // Send the article data to the server (you can make a POST request)
+  fetch('http://localhost:5095/api/Article', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title, content }),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Article added:', data);
+    // Optionally, close the form and update the UI
+    alert('Article added successfully!');
+    // You might want to reload the articles or update the DOM with the new article.
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
