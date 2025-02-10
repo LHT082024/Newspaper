@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       //to sort it.
       container.innerHTML = `
         <h2>${article.headline}</h2>
-        <p>${article.story}</p>
         <img src="${article.imagePath}" alt="" height="200px" width="400px">
+        <p>${article.story}</p>
       `;
     } catch (error) {
       console.error('Error fetching article:', error);

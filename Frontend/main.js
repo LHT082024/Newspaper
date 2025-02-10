@@ -1,5 +1,5 @@
 //fetch data and returns it as a json via url
-let articles  = [];
+let articles = [];
 
 async function fetchArticles() {
   try {
@@ -10,7 +10,6 @@ async function fetchArticles() {
     console.log('Articles:', articles);
     //find the element in html where the data is to be implemented
     const container = document.querySelector('.article-container');
-
 
     //if the element doesn't exist, return error message
     if (!container) {
@@ -26,6 +25,13 @@ async function fetchArticles() {
       const articleElement = document.createElement('div');
       articleElement.classList.add('article');
 
+      if (article.imagePath) {
+        const articleImage = document.createElement('img');
+        articleImage.src = article.imagePath;
+        articleImage.alt = article.headline || 'Article image';
+        articleElement.appendChild(articleImage);
+      }
+
       const headline = document.createElement('a');
       headline.href = '#';
       headline.textContent = article.headline;
@@ -34,22 +40,12 @@ async function fetchArticles() {
 
       articleElement.appendChild(headline);
 
-      if (article.imagePath) {
-        const articleImage = document.createElement('img');
-        articleImage.src = article.imagePath;
-        articleImage.alt = article.headline || 'Article image';
-        articleElement.appendChild(articleImage);
-      }
-
       container.appendChild(articleElement);
     });
   } catch (error) {
     console.error('Fetch Error:', error);
   }
 }
-
-
-
 
 function openArticle(articleId) {
   window.location.href = `/article-page.html?articleId=${articleId}`;

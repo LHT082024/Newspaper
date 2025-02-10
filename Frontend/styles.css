@@ -213,23 +213,12 @@ main {
   padding-top: 80px;
 }
 
-/* #article1 {
-  grid-area: a;
-  background: blue;
-  border-radius: 10px;
+/* Ensure images scale properly */
+.article-content img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Prevent stretching */
 }
-
-#article2 {
-  grid-area: b;
-  background: red;
-  border-radius: 10px;
-}
-
-#article3 {
-  grid-area: c;
-  background: green;
-  border-radius: 10px;
-} */
 
 footer {
 }
@@ -323,7 +312,3 @@ form > a:hover {
     'main-article main-article article'
     'main-article main-article article-two';
 }
-
-/* #article2 {
-  grid-area: article-two;
-} */
