@@ -174,13 +174,14 @@ main {
   justify-content: center;
   padding: 1rem;
   padding-top: 80px;
-  grid-template-columns: repeat(3, 20rem);
-  grid-template-rows: repeat(4, 20em);
+  grid-template-columns: repeat(2, 30rem);
+  grid-template-rows: repeat(5, 20em);
   grid-template-areas:
-    'a a a'
-    'b b b'
-    'b b b'
-    'c c c';
+    'a a'
+    'b b'
+    'b b'
+    'b b'
+    'c c';
 }
 
 .article-container a {
