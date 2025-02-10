@@ -35,6 +35,7 @@ async function fetchArticles() {
       const headline = document.createElement('a');
       headline.href = '#';
       headline.textContent = article.headline;
+      headline.classList.add('headline');
 
       headline.addEventListener('click', () => openArticle(article.id));
 
