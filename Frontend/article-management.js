@@ -1,65 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-  //this function takes the articles from the database and returns the articles as
-  //a json object and places that article in a container from html
-  async function getArticle(articleId) {
-    try {
-      const response = await fetch(`http://localhost:5095/api/Article`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const articles = await response.json(); // Array of articles
-      console.log('Fetched articles:', articles); // Debugging
-
-      // Find the article with the specified ID
-      const article = articles.find((a) => a.id === articleId);
-      const container = document.getElementById('article-content');
-
-      if (!article) {
-        container.innerHTML = `<p>No article found for ID ${articleId}.</p>`;
-        return;
-      }
-
-      // here we take the article object and displays specific parts of it using the model class
-      //to sort it.
-      container.innerHTML = `
-        <h2>${article.headline}</h2>
-        <img src="${article.imagePath}" alt="" height="200px" width="400px">
-        <p>${article.story}</p>
-      `;
-    } catch (error) {
-      console.error('Error fetching article:', error);
-    }
-  }
-
-  // we have already decided that we only want to display one article decided via an id
-  //this code decides which article we will display based on the id in the url of the
-  //headline we just clikced
-  const params = new URLSearchParams(window.location.search);
-  const articleId = parseInt(params.get('articleId'), 10);
-
-  if (!articleId) {
-    document.getElementById(
-      'article-content'
-    ).innerHTML = `<p>No article ID provided in URL.</p>`;
-    return;
-  }
-
-  getArticle(articleId); // Fetch and display the article
-});
-
-//login
-async function Login() {}
-
-const hamMenu = document.querySelector('.ham-menu');
-
-const offScreenMenu = document.querySelector('.off-screen-menu');
-
-hamMenu.addEventListener('click', () => {
-  hamMenu.classList.toggle('active');
-  offScreenMenu.classList.toggle('active');
-});
-
+// create html form for adding and editing articles
 <form id="article-form">
   <input type="hidden" id="article-id" />
   <label for="headline">Headline:</label>
@@ -74,6 +13,7 @@ hamMenu.addEventListener('click', () => {
   <button type="submit">Save Article</button>
 </form>
 
+// handle form submission with javascript
 document.getElementById('article-form').addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -127,6 +67,7 @@ function clearForm() {
   document.getElementById('article-id').value = ''; // Clear article ID if editing
 }
 
+// pre-fill the form for editing an article
 document.querySelectorAll('.edit-button').forEach(button => {
   button.addEventListener('click', async (event) => {
     const articleId = event.target.getAttribute('data-id');
@@ -148,6 +89,7 @@ document.querySelectorAll('.edit-button').forEach(button => {
   });
 });
 
+// delete articles
 document.querySelectorAll('.delete-button').forEach(button => {
   button.addEventListener('click', async (event) => {
     const articleId = event.target.getAttribute('data-id');
@@ -168,3 +110,78 @@ document.querySelectorAll('.delete-button').forEach(button => {
     }
   });
 });
+
+// hide button based on users role
+// Assuming you have a JWT token stored in localStorage
+const token = localStorage.getItem('auth-token'); // Retrieve token
+if (token) {
+  const decoded = decodeJwt(token); // Decode the JWT to get the user info
+  const userRole = decoded.role; // Get user role from the token (e.g., 'editor' or 'reader')
+
+  // Show the button if the user is an editor
+  if (userRole === 'editor') {
+    document.getElementById('add-article-btn').style.display = 'block';
+  }
+}
+
+// Example function to decode JWT (you can use a library like jwt-decode)
+function decodeJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
+
+// add article
+// Event listener for the "Add Article" button
+const addArticleBtn = document.getElementById('add-article-btn');
+addArticleBtn.addEventListener('click', () => {
+  // Handle the action when the button is clicked
+  openAddArticleForm();
+});
+
+// Example function to show the add article form (you can create the form dynamically or display an existing one)
+function openAddArticleForm() {
+  const formContainer = document.createElement('div');
+  formContainer.innerHTML = `
+    <form id="add-article-form">
+      <input type="text" id="article-title" placeholder="Article Title" required />
+      <textarea id="article-content" placeholder="Article Content" required></textarea>
+      <button type="submit">Submit Article</button>
+    </form>
+  `;
+  document.body.appendChild(formContainer);
+
+  const form = document.getElementById('add-article-form');
+  form.addEventListener('submit', handleAddArticle);
+}
+
+function handleAddArticle(event) {
+  event.preventDefault();
+
+  const title = document.getElementById('article-title').value;
+  const content = document.getElementById('article-content').value;
+
+  // Send the article data to the server (you can make a POST request)
+  fetch('http://localhost:5095/api/Article', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title, content }),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Article added:', data);
+    // Optionally, close the form and update the UI
+    alert('Article added successfully!');
+    // You might want to reload the articles or update the DOM with the new article.
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
