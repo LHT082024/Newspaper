@@ -129,12 +129,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// add article
-// Event listener for the "Add Article" button
-const addArticleBtn = document.getElementById('add-article-btn');
-addArticleBtn.addEventListener('click', () => {
-  // Handle the action when the button is clicked
-  openAddArticleForm();
+//Add article checks if you have the correct role to do it
+document.addEventListener('DOMContentLoaded', () => {
+  const addArticleBtn = document.getElementById('add-article-btn');
+
+  // Fetch user role from the server
+  async function fetchUserRole() {
+    try {
+      const response = await fetch('/api/Profile/user-info');
+      if (!response.ok) {
+        throw new Error('Failed to fetch user info');
+      }
+
+      const data = await response.json();
+      const userRole = data.role;
+
+      // Show the button if the user is an editor
+      if (userRole === 'Editor') {
+        addArticleBtn.style.display = 'block';
+      }
+    } catch (error) {
+      console.error('Error fetching user role:', error);
+    }
+  }
+
+  fetchUserRole(); // Call the function to get user role and update UI
 });
 
 // Example function to show the add article form (you can create the form dynamically or display an existing one)
