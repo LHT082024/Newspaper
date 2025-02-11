@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Login Success:', data);
       sessionStorage.setItem('LoggedInUser', username);
+      sessionStorage.setItem('userRole', data.role);
 
       // Redirect to home page
       window.location.href = '/index.html';
