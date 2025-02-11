@@ -129,35 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// hide button based on users role
-// Assuming you have a JWT token stored in localStorage
-const token = localStorage.getItem('auth-token'); // Retrieve token
-if (token) {
-  const decoded = decodeJwt(token); // Decode the JWT to get the user info
-  const userRole = decoded.role; // Get user role from the token (e.g., 'editor' or 'reader')
-
-  // Show the button if the user is an editor
-  if (userRole === 'editor') {
-    document.getElementById('add-article-btn').style.display = 'block';
-  }
-}
-
-// Example function to decode JWT (you can use a library like jwt-decode)
-function decodeJwt(token) {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join('')
-  );
-
-  return JSON.parse(jsonPayload);
-}
-
 // add article
 // Event listener for the "Add Article" button
 const addArticleBtn = document.getElementById('add-article-btn');
