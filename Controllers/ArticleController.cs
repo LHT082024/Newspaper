@@ -23,18 +23,38 @@ namespace Newspaper.Controllers
             _context = context;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ArticleModel _articles)
+        [HttpPost("add-article")]
+        public async Task<IActionResult> AddArticle([FromBody] ArticleModel article)
         {
-            if (_articles == null)
+            // Check session for profile type
+            var profileType = HttpContext.Session.GetString("ProfileType");
+
+            // If profileType is not "Editor", return Unauthorized
+            if (profileType != "Editor")
             {
-                return BadRequest("You took a wrong turn somewhere");
+                return Unauthorized(new { Message = "You must be an editor to add articles." });
             }
-            _articles.ID = 0;
-            _context.articleModels.Add(_articles);
+
+            // Ensure the article is not null
+            if (article == null)
+            {
+                return BadRequest("Invalid article data");
+            }
+
+            // Assign a default ID of 0 (or let the database handle it depending on your setup)
+            article.ID = 0;
+
+            // Add the article to the database
+            _context.articleModels.Add(article);
+
+            // Save changes asynchronously
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = _articles.ID }, _articles);
+
+            // Return a CreatedAtAction response (along with the newly created article)
+            return CreatedAtAction(nameof(Get), new { id = article.ID }, article);
         }
+
+
 
         [HttpGet]
         public async Task<IActionResult> Get()
