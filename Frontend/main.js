@@ -147,12 +147,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Login Success:', data);
       sessionStorage.setItem('LoggedInUser', username);
+      sessionStorage.setItem('userRole', data.role);
 
       // Redirect to home page
       window.location.href = '/index.html';
     } catch (error) {
       console.error('Login Error:', error);
       messageBox.textContent = error.message; //show error message on page
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loginLink = document.getElementById('login-link');
+  const logoutLink = document.getElementById('logout-link');
+
+  // Check if the user is logged in by checking sessionStorage or localStorage
+  const isLoggedIn =
+    sessionStorage.getItem('LoggedInUser') ||
+    localStorage.getItem('auth-token');
+
+  if (isLoggedIn) {
+    // User is logged in, show the logout button and hide the login button
+    loginLink.style.display = 'none';
+    logoutLink.style.display = 'block';
+  } else {
+    // User is not logged in, show the login button and hide the logout button
+    loginLink.style.display = 'block';
+    logoutLink.style.display = 'none';
+  }
+
+  // Handle logout
+  logoutLink.addEventListener('click', async () => {
+    try {
+      // Make a logout request to the server (if you have an API endpoint for logout)
+      let response = await fetch('http://localhost:5095/api/Login/logout', {
+        method: 'POST', // Or GET, depending on your backend
+        credentials: 'include', // Make sure session cookies are sent
+      });
+
+      if (response.ok) {
+        // Clear sessionStorage and localStorage
+        sessionStorage.removeItem('LoggedInUser');
+        localStorage.removeItem('auth-token');
+
+        // Refresh the page or redirect to login
+        window.location.href = '/login.html';
+      } else {
+        throw new Error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Logout Error:', error);
     }
   });
 });

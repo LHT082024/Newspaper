@@ -33,8 +33,11 @@ namespace Newspaper.Controllers
             {
                 return Unauthorized(new { Message = "Invalid username or password" });
             }
+            // Set session values after successful login
             HttpContext.Session.SetString("LoggedInUser", user.Name);
             HttpContext.Session.SetString("ProfilyeType", user.ProfileType);
+            HttpContext.Session.SetString("userRole", userRole);
+
 
             return Ok(new { Message = "Login Sucessful", _context = user });
         }

@@ -17,10 +17,26 @@ namespace Newspaper.Controllers
         //to be able to modify stuff inside the database we use the object created from the
         //dbContext class
         private readonly DbContextClass _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ProfileController(DbContextClass context)
+        public ProfileController(DbContextClass context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        // Add user info from sessions to get role
+        [HttpGet("user-info")]
+        public IActionResult GetUserInfo()
+        {
+            var userRole = _httpContextAccessor.HttpContext.Session.GetString("userRole");
+
+            if (string.IsNullOrEmpty(userRole))
+            {
+                return Unauthorized(); //If the user isn't logged in or hasn't got a role
+            }
+
+            return = k(new { role = userRole });
         }
 
         //this method gives us the ability to create profiles
