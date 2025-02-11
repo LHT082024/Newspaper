@@ -36,7 +36,7 @@ namespace Newspaper.Controllers
                 return Unauthorized(); //If the user isn't logged in or hasn't got a role
             }
 
-            return = k(new { role = userRole });
+            return Ok(new { role = userRole });
         }
 
         //this method gives us the ability to create profiles
@@ -100,12 +100,12 @@ namespace Newspaper.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Editor")] //Only allows users with 'Editor' role
-        [HttpPost("add-article")]
-        public IActionResult AddArticle([FromBody] Article article)
-        {
-            return Ok(new { message = "Article added successfully!" });
-        }
+        // [Authorize(Roles = "Editor")] //Only allows users with 'Editor' role
+        // [HttpPost("add-article")]
+        // public IActionResult AddArticle([FromBody] Article article)
+        // {
+        //     return Ok(new { message = "Article added successfully!" });
+        // }
 
     }
 }
