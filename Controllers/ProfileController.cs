@@ -84,5 +84,12 @@ namespace Newspaper.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Editor")] //Only allows users with 'Editor' role
+        [HttpPost("add-article")]
+        public IActionResult AddArticle([FromBody] Article article)
+        {
+            return Ok(new { message = "Article added successfully!" });
+        }
+
     }
 }
