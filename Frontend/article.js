@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 //login
 async function Login() {}
 
+//hamburger menu
 const hamMenu = document.querySelector('.ham-menu');
-
 const offScreenMenu = document.querySelector('.off-screen-menu');
 
 hamMenu.addEventListener('click', () => {
@@ -60,6 +60,7 @@ hamMenu.addEventListener('click', () => {
   offScreenMenu.classList.toggle('active');
 });
 
+// logic for the editing article
 document
   .getElementById('article-form')
   .addEventListener('submit', async (event) => {
