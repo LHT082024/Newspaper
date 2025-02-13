@@ -78,6 +78,21 @@
     </header>
     <main>
       <div id="article-content"></div>
+      // create html form for adding and editing articles
+      <form id="article-form">
+        <input type="hidden" id="article-id" />
+        <label for="headline">Headline:</label>
+        <input type="text" id="headline" required />
+
+        <label for="content">Content:</label>
+        <textarea id="content" required></textarea>
+
+        <label for="imagePath">Image Path:</label>
+        <input type="text" id="imagePath" />
+
+        <button type="submit">Save Article</button>
+      </form>
+      ;
       <button class="edit-button" data-id="1" style="display: none">
         Edit
       </button>
