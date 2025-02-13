@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Article</title>
+    <title>The time traveling journalist</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="article.js" defer></script>
+    <script src="main.js" defer></script>
     <script src="searchbar.js" defer></script>
-    <script src="article-management.js"></script>
   </head>
   <body>
     <header>
@@ -26,8 +25,13 @@
                 <ul>
                   <li><a href="/index.html">home</a></li>
                   <li><a href="/about">about</a></li>
-                  <li><a href="/login.html">log in</a></li>
+                  <li id="login-link"><a href="/login.html">log in</a></li>
+                  <!-- Initially shown -->
                   <li><a href="/faq.html">f.a.q</a></li>
+                  <li id="logout-link" style="display: none">
+                    <a href="#">log out</a>
+                  </li>
+                  <!-- Initially hidden -->
                 </ul>
               </div>
               <svg
@@ -43,9 +47,9 @@
                   <g>
                     <path
                       d="M209.297,5.229C93.887,5.229,0,99.121,0,214.526C0,329.93,93.887,423.822,209.297,423.822
-			c115.409,0,209.297-93.892,209.297-209.297C418.593,99.121,324.706,5.229,209.297,5.229z M209.297,402.893
-			c-103.862,0-188.367-84.5-188.367-188.367c0-103.866,84.505-188.367,188.367-188.367c103.861,0,188.367,84.501,188.367,188.367
-			C397.664,318.392,313.158,402.893,209.297,402.893z"
+                c115.409,0,209.297-93.892,209.297-209.297C418.593,99.121,324.706,5.229,209.297,5.229z M209.297,402.893
+                c-103.862,0-188.367-84.5-188.367-188.367c0-103.866,84.505-188.367,188.367-188.367c103.861,0,188.367,84.501,188.367,188.367
+                C397.664,318.392,313.158,402.893,209.297,402.893z"
                     />
                   </g>
                 </g>
@@ -74,6 +78,26 @@
     </header>
     <main>
       <div id="article-content"></div>
+      // create html form for adding and editing articles
+      <form id="article-form">
+        <input type="hidden" id="article-id" />
+        <label for="headline">Headline:</label>
+        <input type="text" id="headline" required />
+
+        <label for="content">Content:</label>
+        <textarea id="content" required></textarea>
+
+        <label for="imagePath">Image Path:</label>
+        <input type="text" id="imagePath" />
+
+        <button type="submit">Save Article</button>
+      </form>
+      ;
+      <button class="edit-button" data-id="1" style="display: none">
+        Edit
+      </button>
+      <!-- The Edit/Add Article button -->
+      <button id="add-article-btn" style="display: none">Add Article</button>
     </main>
   </body>
 </html>
