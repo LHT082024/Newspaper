@@ -61,6 +61,26 @@ hamMenu.addEventListener('click', () => {
   offScreenMenu.classList.toggle('active');
 });
 
+//edit button redirect to article page
+// Find the article with the specified ID
+const article = articles.find((a) => a.id === articleId);
+const container = document.getElementById('article-content');
+
+if (!article) {
+  container.innerHTML = `<p>No article found for ID ${articleId}.</p>`;
+  return;
+}
+//redirect to the correct window
+const params = new URLSearchParams(window.location.search);
+const articleId = parseInt(params.get('articleId'), 10);
+
+if (!articleId) {
+  document.getElementById(
+    'article-content'
+  ).innerHTML = `<p>No article ID provided in URL.</p>`;
+  return;
+}
+
 //article form
 document
   .getElementById('article-form')
