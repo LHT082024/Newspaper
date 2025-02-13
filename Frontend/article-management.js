@@ -3,7 +3,8 @@ document
   .getElementById('article-form')
   .addEventListener('submit', async (event) => {
     event.preventDefault();
-
+    
+    //adds html elements to the javascript
     const articleId = document.getElementById('article-id').value;
     const headline = document.getElementById('headline').value;
     const content = document.getElementById('content').value;
