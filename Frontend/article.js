@@ -60,20 +60,6 @@ hamMenu.addEventListener('click', () => {
   offScreenMenu.classList.toggle('active');
 });
 
-<form id="article-form">
-  <input type="hidden" id="article-id" />
-  <label for="headline">Headline:</label>
-  <input type="text" id="headline" required />
-
-  <label for="content">Content:</label>
-  <textarea id="content" required></textarea>
-
-  <label for="imagePath">Image Path:</label>
-  <input type="text" id="imagePath" />
-
-  <button type="submit">Save Article</button>
-</form>;
-
 document
   .getElementById('article-form')
   .addEventListener('submit', async (event) => {
