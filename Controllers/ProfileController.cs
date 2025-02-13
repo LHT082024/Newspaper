@@ -17,19 +17,18 @@ namespace Newspaper.Controllers
         //to be able to modify stuff inside the database we use the object created from the
         //dbContext class
         private readonly DbContextClass _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        // private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ProfileController(DbContextClass context, IHttpContextAccessor httpContextAccessor)
+        public ProfileController(DbContextClass context)
         {
             _context = context;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         // Add user info from sessions to get role
         [HttpGet("user-info")]
         public IActionResult GetUserInfo()
         {
-            var userRole = _httpContextAccessor.HttpContext.Session.GetString("userRole");
+            var userRole = HttpContext.Session.GetString("userRole");
 
             if (string.IsNullOrEmpty(userRole))
             {
