@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //login
 async function Login() {}
 
+//hamburger menu
 const hamMenu = document.querySelector('.ham-menu');
 
 const offScreenMenu = document.querySelector('.off-screen-menu');
@@ -60,6 +61,7 @@ hamMenu.addEventListener('click', () => {
   offScreenMenu.classList.toggle('active');
 });
 
+//article form
 document
   .getElementById('article-form')
   .addEventListener('submit', async (event) => {
@@ -118,6 +120,7 @@ function clearForm() {
   document.getElementById('article-id').value = ''; // Clear article ID if editing
 }
 
+//edit article
 document.querySelectorAll('.edit-button').forEach((button) => {
   button.addEventListener('click', async (event) => {
     const articleId = event.target.getAttribute('data-id');
