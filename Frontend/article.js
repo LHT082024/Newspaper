@@ -16,17 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const container = document.getElementById('article-content');
 
       if (!article) {
-        container.innerHTML = `<p>No article found for ID ${articleId}.</p>`;
+        p.textContent = `No article found for ID ${articleId}.`;
+        container.appendChild(p);
         return;
       }
 
       // here we take the article object and displays specific parts of it using the model class
       //to sort it.
-      container.innerHTML = `
-        <h2>${article.headline}</h2>
-        <img src="${article.imagePath}" alt="" height="200px" width="400px">
-        <p>${article.story}</p>
-      `;
+      const h2 = document.createElement('h2');
+      h2.textContent = article.headline;
+      const img = document.createElement('img');
+      img.src = article.imagePath;
+      img.height = '200px';
+      img.width = '400px';
+      img.alt = '';
+      const p = document.createElement('p');
+      p.textContent = article.story;
+      container.appendChild(h2);
+      container.appendChild(img);
+      container.appendChild(p);
     } catch (error) {
       console.error('Error fetching article:', error);
     }
@@ -51,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //login
 async function Login() {}
 
+//hamburger menu
 const hamMenu = document.querySelector('.ham-menu');
 
 const offScreenMenu = document.querySelector('.off-screen-menu');
@@ -60,28 +69,49 @@ hamMenu.addEventListener('click', () => {
   offScreenMenu.classList.toggle('active');
 });
 
-document
-  .getElementById('article-form')
-  .addEventListener('submit', async (event) => {
-    event.preventDefault();
+async function editArticle(articleId) {
+  //edit button redirect to article page
+  // Find the article with the specified ID
+  const article = articles.find((a) => a.id === articleId);
+  const container = document.getElementById('article-content');
+  const p = document.createElement('p');
 
-    const articleId = document.getElementById('article-id').value;
-    const headline = document.getElementById('headline').value;
-    const content = document.getElementById('content').value;
-    const imagePath = document.getElementById('imagePath').value;
+  if (!article) {
+    p.textContent = `No article found for ID ${articleId}.`;
+    container.appendChild(p);
+    return;
+  }
+  //redirect to the correct window
+  const params = new URLSearchParams(window.location.search);
+  const articleId = parseInt(params.get('articleId'), 10);
 
-    const articleData = {
-      headline,
-      content,
-      imagePath,
-    };
+  if (!articleId) {
+    p.textContent = `No article ID provided in URL.`;
+    container.appendChild(p);
+    return;
+  }
+}
 
-    try {
-      let response;
+//article form
+container.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-      if (articleId) {
-        // Update existing article
-        response = await fetch(
+  const articleId = document.getElementById('article-id').value;
+  const headline = document.getElementById('headline').value;
+  const content = document.getElementById('content').value;
+  const imagePath = document.getElementById('imagePath').value;
+
+  const articleData = {
+    headline,
+    content,
+    imagePath,
+  };
+
+  try {
+    if (articleId) {
+      // Update existing article
+      try {
+        const request = await fetch(
           `http://localhost:5095/api/Article/${articleId}`,
           {
             method: 'PUT',
@@ -91,33 +121,38 @@ document
             body: JSON.stringify(articleData),
           }
         );
-      } else {
+      } catch (error) {}
+    } else {
+      try {
         // Create new article
-        response = await fetch('http://localhost:5095/api/Article', {
+        const request = await fetch('http://localhost:5095/api/Article', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(articleData),
         });
-      }
-
-      if (!response.ok) throw new Error('Error saving article');
-
-      const result = await response.json();
-      alert('Article saved successfully');
-      clearForm(); // Clear the form after saving
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to save article');
+      } catch (error) {}
     }
-  });
+
+    if (!response.ok) throw new Error('Error saving article');
+    // This might be fucked
+    const response = await request;
+    const result = await response.json();
+    alert('Article saved successfully');
+    clearForm(); // Clear the form after saving
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to save article');
+  }
+});
 
 function clearForm() {
   document.getElementById('article-form').reset();
   document.getElementById('article-id').value = ''; // Clear article ID if editing
 }
 
+//edit article
 document.querySelectorAll('.edit-button').forEach((button) => {
   button.addEventListener('click', async (event) => {
     const articleId = event.target.getAttribute('data-id');
