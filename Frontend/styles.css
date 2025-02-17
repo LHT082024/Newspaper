@@ -2,6 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 ul {
@@ -10,12 +12,6 @@ ul {
 
 /* Styling the front page */
 /* Styling the header */
-
-#article-content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 header {
   background-color: #37c6ce;
   position: sticky;
@@ -254,7 +250,11 @@ main {
   text-decoration: underline;
 }
 
-
+#article-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* Styling the login page */
 #login {
