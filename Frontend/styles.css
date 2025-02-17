@@ -33,8 +33,9 @@ nav {
   justify-content: space-between;
 }
 
-.break-text {
-  overflow-wrap: anywhere;
+p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Styling where the searchbar and hamburger meny will be on the page */
