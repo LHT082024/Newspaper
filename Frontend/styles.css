@@ -206,10 +206,12 @@ main {
 }
 
 #article-content {
+  display: grid;
   gap: 10px;
   width: 100%;
   padding: 1rem;
   padding-top: 80px;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
