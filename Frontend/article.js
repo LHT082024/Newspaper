@@ -29,20 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Creating and appending elements
-      const h2 = document.createElement('h2');
-      h2.textContent = article.headline;
-
       const img = document.createElement('img');
       img.src = article.imagePath;
       img.height = 200;
       img.width = 400;
       img.alt = '';
+      const h2 = document.createElement('h2');
+      h2.textContent = article.headline;
+
 
       const p = document.createElement('p');
       p.textContent = article.story;
 
-      container.appendChild(h2);
       container.appendChild(img);
+      container.appendChild(h2);
       container.appendChild(p);
     } catch (error) {
       console.error('Error fetching article:', error);
@@ -74,40 +74,5 @@ document.addEventListener('DOMContentLoaded', () => {
       hamMenu.classList.toggle('active');
       offScreenMenu.classList.toggle('active');
     });
-  }
-
-  async function editArticle(articleId) {
-    try {
-      const response = await fetch(
-        `http://localhost:5095/api/Article/${articleId}`
-      );
-      if (!response.ok) throw new Error('Article not found');
-
-      const article = await response.json();
-      const container = document.getElementById('article-content');
-
-      if (!container) {
-        console.error('Container not found!');
-        return;
-      }
-
-      container.textContent = ''; // Clear previous content
-
-      const p = document.createElement('p');
-
-      if (!article) {
-        p.textContent = `No article found for ID ${articleId}.`;
-        container.appendChild(p);
-        return;
-      }
-
-      // Fill the form with article data
-      document.getElementById('article-id').value = article.id;
-      document.getElementById('headline').value = article.headline;
-      document.getElementById('content').value = article.content;
-      document.getElementById('imagePath').value = article.imagePath;
-    } catch (error) {
-      console.error('Error fetching article:', error);
-    }
-  }  
+  }   
 });
