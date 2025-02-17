@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Creating and appending elements
       const img = document.createElement('img');
       img.src = article.imagePath;
-      img.height = 200;
-      img.width = 400;
+      img.height = 500;
+      img.width = 900;
       img.alt = '';
       const h2 = document.createElement('h2');
       h2.textContent = article.headline;
