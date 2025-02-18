@@ -78,7 +78,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 //this makes sure that when you start the program it opens the swagger page
-app.MapGet("/", () => Results.Redirect($"http://localhost:5095/swagger"));
+app.MapGet("/", () => Results.Redirect($"http://localhost:5095/index.html"));
 app.MapControllers();
 
 app.Run();
